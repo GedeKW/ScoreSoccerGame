@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SnapSwing : MonoBehaviour
+public class Leg : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private PlayerInputAction _input;
@@ -34,18 +34,18 @@ public class SnapSwing : MonoBehaviour
         yield return SwingLeg(_rb.rotation,targetRotation);
     }
 
-    void Update()
-    {
-        if ( _input.Player.SwingFront.WasPerformedThisFrame() && !_isSwinging)
-        {
-            StartCoroutine(PlayerSwing(90));
-        }
+    // void Update()
+    // {
+    //     if ( _input.Player.SwingFront.WasPerformedThisFrame() && !_isSwinging)
+    //     {
+    //         StartCoroutine(PlayerSwing(90));
+    //     }
 
-        if ( _input.Player.SwingBack.WasPerformedThisFrame() && !_isSwinging)
-        {
-            StartCoroutine(PlayerSwing(-90));
-        }
-    }
+    //     if ( _input.Player.SwingBack.WasPerformedThisFrame() && !_isSwinging)
+    //     {
+    //         StartCoroutine(PlayerSwing(-90));
+    //     }
+    // }
 
     void Awake()
     {
