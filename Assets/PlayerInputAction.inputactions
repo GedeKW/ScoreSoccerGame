@@ -1,0 +1,119 @@
+{
+    "version": 1,
+    "name": "PlayerInputAction",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "ed58f4a2-9da0-4d6c-9318-fc00da00e387",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "65d1f687-3286-4d6e-84af-f8359873e4c6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SwingFront",
+                    "type": "Button",
+                    "id": "4ddc694d-c74f-4c6b-b172-dfef6cefaf06",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwingBack",
+                    "type": "Button",
+                    "id": "c483b6b6-ec12-4d81-891b-93e09c3b5b90",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "3908f9df-2cfb-485a-950f-16267f3cf4d6",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "69c8df59-58d9-4495-925e-b31ec0912509",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "c8cb262b-7a2c-4285-b7fa-9cd813105d48",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "5d03a025-8813-4eff-8eda-d5c9d9011055",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "5e359622-7bb1-48e8-a4dd-4741c71538af",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c6220f06-2b4c-4623-8156-025cb84918c7",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwingFront",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "943c8393-431d-4d70-8702-d33548c72eef",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwingBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
