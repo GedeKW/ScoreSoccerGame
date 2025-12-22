@@ -38,7 +38,7 @@ public class Player : PlayerController
         playerMove.SetMovement(_movement);
     }
 
-
+    
     //Swing leg
     protected override void HandleSwingFrontLegPerformed(InputAction.CallbackContext context)
     {

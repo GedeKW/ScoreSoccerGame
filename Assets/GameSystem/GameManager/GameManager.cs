@@ -94,6 +94,16 @@ public class GameManager : MonoBehaviour
     {
         StartGame();
     }
+
+    public void GoToMainMenu()
+    {
+        ChangeState(GameState.menu);
+    }
+
+    public void OpenHighScore()
+    {
+        LeaderboardUI.Instance.OpenLeaderboardUI();
+    }
     
 
     private bool GameIsFinished()

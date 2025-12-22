@@ -13,7 +13,7 @@ public class LeaderboardManager : MonoBehaviour
 
     protected void Start()
     {
-        LoadLeaderboard();
+        // LoadLeaderboard();
     }
 
     private void LoadLeaderboard()
@@ -21,6 +21,7 @@ public class LeaderboardManager : MonoBehaviour
         if (!PlayerPrefs.HasKey(HIGHSCORE_KEY))
         {
             highScoreData = new HighScoreData();
+            Debug.Log("gak masuk");
             return;
         }
 
@@ -51,13 +52,21 @@ public class LeaderboardManager : MonoBehaviour
         }
     }
 
+    public HighScoreData GetHighScoreData()
+    {
+        return highScoreData;
+    }
+
     public int CheckForNewHighScore(int score,string playerName)
     {
         bool hasPos = false;
         int yourPos = -1;
         Debug.Log("Check HighScore");
         int currentScore = score;
-        string currentPlayerName = playerName;
+        DateTime currentDateLocal = DateTime.Now;
+        string formattedDate = currentDateLocal.ToString("dd/MM/yy");
+
+        string currentPlayerName = formattedDate;
         for(int i = 0; i < highScoreData.scoreDatas.Length; i++)
         {
             if(currentScore >= highScoreData.scoreDatas[i].score)
@@ -92,6 +101,7 @@ public class LeaderboardManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            LoadLeaderboard();
         }
 
     }
@@ -105,11 +115,20 @@ public class HighScoreData
 
     public HighScoreData()
     {
-        scoreDatas = new ScoreData[10];
-        for(int i = 0; i < 10; i++)
-        {
-            this.scoreDatas.Append(new ScoreData());
-        }
+        //initialize array sucks
+        scoreDatas = new ScoreData[10]{
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData(),
+            new ScoreData()
+        };
+        
         // the parameter for reference will be copied to all data
         // this.scoreDatas = Enumerable.Repeat(new ScoreData(), 10).ToArray();
     }

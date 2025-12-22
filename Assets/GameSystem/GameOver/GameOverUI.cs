@@ -65,12 +65,13 @@ public class GameOverUI : MonoBehaviour
 
     public void OnClick_MainMenu()
     {
-        Debug.Log("Main Menu");
+        CloseGameOverUI();
+        GameManager.Instance.GoToMainMenu();
     }
 
     public void OnClick_HighScore()
     {
-        Debug.Log("HighScoreUI");
+        GameManager.Instance.OpenHighScore();
     }
 
 

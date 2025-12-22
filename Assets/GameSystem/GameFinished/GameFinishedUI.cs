@@ -6,6 +6,7 @@ public class GameFinishedUI : MonoBehaviour
     public static GameFinishedUI Instance;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private GameObject interactables;
+    [SerializeField] private GameObject nonInteractables;
     [SerializeField] private float openDuration = 0.5f;
     [SerializeField] private float closeDuration = 0.2f;
 
@@ -20,6 +21,7 @@ public class GameFinishedUI : MonoBehaviour
             Instance = this;
             canvasGroup.alpha = 0;
             interactables.SetActive(false);
+            nonInteractables.SetActive(false);
         }
 
     }
@@ -40,12 +42,14 @@ public class GameFinishedUI : MonoBehaviour
             yield return null;    
         }
         interactables.SetActive(true);
-
+        nonInteractables.SetActive(true);
+        
         yield return null;
     }
     IEnumerator CloseUI()
     {
         interactables.SetActive(false);
+        nonInteractables.SetActive(false);
         while(canvasGroup.alpha > 0)
         {
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha,0,1 / openDuration * Time.deltaTime);
@@ -54,5 +58,22 @@ public class GameFinishedUI : MonoBehaviour
         
 
         yield return null;
+    }
+
+    public void OnClick_RestartGame()
+    {
+        CloseGameFinishedUI();
+        GameManager.Instance.RestartGame();
+    }
+
+    public void OnClick_MainMenu()
+    {
+        CloseGameFinishedUI();
+        GameManager.Instance.GoToMainMenu();
+    }
+
+    public void OnClick_HighScore()
+    {
+        GameManager.Instance.OpenHighScore();
     }
 }
