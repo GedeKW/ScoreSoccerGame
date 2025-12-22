@@ -18,6 +18,7 @@ public class TimerUI : MonoBehaviour
 
     private void HandleChangeTime(float time)
     {
-        _textMessage.text = "Time Left: " +time.ToString("F1");
+        // _textMessage.text = "Time Left: " +time.ToString("F0");
+        _textMessage.text = time.ToString("F0");
     }
 }

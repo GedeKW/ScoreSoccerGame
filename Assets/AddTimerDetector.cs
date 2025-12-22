@@ -13,7 +13,7 @@ public class AddTimerDetector : MonoBehaviour
         hasDetected = true;
         TimerManager.Instance.AddTimer();
         //tambah suara
-        // audioSource.Play();
+        audioSource.Play();
         this.gameObject.SetActive(false);
     }
 }

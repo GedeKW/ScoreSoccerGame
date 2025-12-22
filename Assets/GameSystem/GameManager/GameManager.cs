@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState {get; private set;}
 
     public Action<GameState> OnChangeState;
+
+    [SerializeField] TMP_Text readyText;
 
     //LifeCycle
     void Awake()
@@ -50,15 +53,22 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartGame_Corr()
     {
         float timer = 3;
-        while(timer > 0)
+        
+        readyText.text = timer.ToString("F0");
+        readyText.gameObject.SetActive(true);
+        while(timer >= 0)
         {
             timer -= Time.deltaTime;
+            readyText.text = Mathf.Max(timer,0).ToString("F0");
             yield return null;
         }
+        readyText.gameObject.SetActive(false);
+        readyText.text = "3";
         ChangeState(GameState.playGame);
         BallManager.Instance.DropBall();
         ScoreManager.Instance.EnableScoring(true);
         TimerManager.Instance.StartTimer();
+        AddTimerManager.Instance.StartSpawnAddTimerManager();
         yield return null;
     }
 
@@ -68,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         if(GameIsFinished()) return;
         ChangeState(GameState.gameOver);
+        AddTimerManager.Instance.StopSpawnAddTimerManager();
         ScoreManager.Instance.EnableScoring(false);
         TimerManager.Instance.PauseTimer(true);
         GameOverUI.Instance.OpenGameOverUI();
@@ -78,10 +89,12 @@ public class GameManager : MonoBehaviour
     {
         if(GameIsFinished()) return;
         ChangeState(GameState.gameFinished);
+        AddTimerManager.Instance.StopSpawnAddTimerManager();
         ScoreManager.Instance.EnableScoring(false);
         int score = ScoreManager.Instance.CurrentScore;
         LeaderboardManager.Instance.CheckForNewHighScore(score,"player");
         GameFinishedUI.Instance.OpenGameFinishedUI();
+        
     }
 
     public void ChangeState(GameState targetGameState)

@@ -4,9 +4,11 @@ using UnityEngine.InputSystem;
 public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private AudioSource _audioSource;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
     // void Update()
     // {
@@ -27,5 +29,10 @@ public class Ball : MonoBehaviour
     {
         transform.position = position;
         rb.linearVelocity = Vector2.zero;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        _audioSource.Play();
     }
 }

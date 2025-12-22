@@ -11,6 +11,10 @@ public class AddTimerManager : MonoBehaviour
     [SerializeField] private AddTimerDetector addTimerDetector;
 
     // public void CanMove
+    private Coroutine spawnerCoroutine;
+
+    [SerializeField]private float delay = 5f; 
+    
 
     private void StopAddTimer()
     {
@@ -19,6 +23,8 @@ public class AddTimerManager : MonoBehaviour
     }
     private void SpawnAddTimer()
     {
+        int targetSpawn = Random.Range(0,spawnPoints.Count);
+        addTimerDetector.gameObject.transform.position = spawnPoints[targetSpawn].position;
         addTimerDetector.gameObject.SetActive(true);
         addTimerDetector.hasDetected = false;
     }
@@ -26,14 +32,46 @@ public class AddTimerManager : MonoBehaviour
     
     public void StopSpawnAddTimerManager()
     {
-        
+        if(spawnerCoroutine != null)
+        {
+            StopCoroutine(spawnerCoroutine);
+            spawnerCoroutine = null;
+        }
+        StopAddTimer();
     }
 
     public void StartSpawnAddTimerManager()
     {
-        
+        if(spawnerCoroutine != null)
+        {
+            StopCoroutine(spawnerCoroutine);
+            spawnerCoroutine = null;
+        }
+        spawnerCoroutine = StartCoroutine(Spawn_Cor());
     }
 
+    IEnumerator Spawn_Cor()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            SpawnAddTimer();
+        }
+        yield return null;
+    }
+
+    void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            // DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
 
 
