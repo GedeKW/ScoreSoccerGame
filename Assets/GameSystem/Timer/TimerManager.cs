@@ -34,7 +34,14 @@ public class TimerManager : MonoBehaviour
     {
         _timerFinished = true;
         GameManager.Instance.GameFinished();
+        
+    }
 
+    public void AddTimer()
+    {
+        if(!_startTimer) return;
+        _gameTimer += 5;
+        OnChangeTime?.Invoke(Mathf.Max(0,_gameTimer));
     }
 
     public void ResetTimer(float time = -1)
