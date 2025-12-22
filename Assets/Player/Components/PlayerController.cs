@@ -51,12 +51,13 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        _input.Disable();
+        
         _input.Player.SwingFront.performed -= HandleSwingFrontLegPerformed;
         _input.Player.SwingFront.canceled -= HandleSwingFrontLegCancel;
         _input.Player.SwingBack.performed -= HandleSwingBackPerfromed;
         _input.Player.SwingBack.canceled -= HandleSwingBackCancel;
         _input.Player.Movement.performed -= HandleMovement;
         _input.Player.Movement.canceled -= HandleMovement;
+        _input.Disable();
     }
 }

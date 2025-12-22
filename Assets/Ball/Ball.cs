@@ -8,12 +8,24 @@ public class Ball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    // void Update()
+    // {
+    //     if (Keyboard.current.spaceKey.wasPressedThisFrame)
+    //     {
+    //         transform.position = new Vector2(0,4);
+    //         rb.linearVelocity = Vector2.zero;
+    //     }
+    // }
+
+    public void SetActive(bool isActive)
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            transform.position = new Vector2(0,4);
-            rb.linearVelocity = Vector2.zero;
-        }
+        // rb.bodyType = !isActive? RigidbodyType2D.Dynamic: RigidbodyType2D.Kinematic;
+        rb.simulated = isActive;
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+        rb.linearVelocity = Vector2.zero;
     }
 }

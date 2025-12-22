@@ -11,18 +11,30 @@ public class TimerManager : MonoBehaviour
     private float _gameTimer;
 
     private bool _startTimer;
+    private bool _timerFinished;
 
     public void StartTimer()
     {
         _startTimer = true;
+        _timerFinished = false;
     }
 
     public void UpdateTime()
     {
-        
+        if(_gameTimer <= 0 && !_timerFinished)
+        {
+            OnTimeFinished();
+        }
         if(!_startTimer) return;
         _gameTimer -= Time.deltaTime;
         OnChangeTime?.Invoke(Mathf.Max(0,_gameTimer));
+    }
+
+    private void OnTimeFinished()
+    {
+        _timerFinished = true;
+        GameManager.Instance.GameFinished();
+
     }
 
     public void ResetTimer(float time = -1)
@@ -30,6 +42,12 @@ public class TimerManager : MonoBehaviour
         _startTimer = false;
         time = (time < 0)? defaultTimer : time;
         _gameTimer = time;
+        OnChangeTime?.Invoke(_gameTimer);
+    }
+
+    public void PauseTimer(bool isPaused)
+    {
+        _startTimer = !isPaused;
     }
 
     void Awake()

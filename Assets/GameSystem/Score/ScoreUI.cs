@@ -16,6 +16,11 @@ public class ScoreUI : MonoBehaviour
         ScoreManager.Instance.OnChangeScore+= HandleChangeScore;
     }
 
+    void OnDestroy()
+    {
+        ScoreManager.Instance.OnChangeScore-= HandleChangeScore;
+    }
+
     private void HandleChangeScore(int score)
     {
         _textMessage.text = "Score : " +score;

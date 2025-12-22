@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameOverUI : MonoBehaviour
+public class GameFinishedUI : MonoBehaviour
 {
-    public static GameOverUI Instance;
+    public static GameFinishedUI Instance;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private GameObject interactables;
     [SerializeField] private float openDuration = 0.5f;
@@ -24,11 +24,11 @@ public class GameOverUI : MonoBehaviour
 
     }
 
-    public void OpenGameOverUI()
+    public void OpenGameFinishedUI()
     {
         StartCoroutine(OpenUI());
     }
-    public void CloseGameOverUI()
+    public void CloseGameFinishedUI()
     {
         StartCoroutine(CloseUI());
     }
@@ -55,23 +55,4 @@ public class GameOverUI : MonoBehaviour
 
         yield return null;
     }
-
-    //Button
-    public void OnClick_Restart()
-    {
-        CloseGameOverUI();
-        GameManager.Instance.RestartGame();
-    }
-
-    public void OnClick_MainMenu()
-    {
-        Debug.Log("Main Menu");
-    }
-
-    public void OnClick_HighScore()
-    {
-        Debug.Log("HighScoreUI");
-    }
-
-
 }

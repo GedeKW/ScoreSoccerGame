@@ -7,7 +7,7 @@ public class ScoreDetector : MonoBehaviour
     {
         if(!whatToDetect.Contains(collision.gameObject.layer)) return;
         ScoreManager.Instance.AddScore(1);
-        Debug.Log("Score");
+        // Debug.Log("Score");
     }
 
 

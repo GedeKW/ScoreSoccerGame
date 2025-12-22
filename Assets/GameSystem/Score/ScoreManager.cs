@@ -9,6 +9,10 @@ public class ScoreManager : MonoBehaviour
 
     public Action<int> OnChangeScore;
 
+    private bool _canScore;
+
+    public int CurrentScore => _currentScore;
+
     void Awake()
     {
         if(Instance != null)
@@ -25,7 +29,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int score = 1)
     {
-        
+        if(!_canScore) return;
         _currentScore += score;
         OnChangeScore?.Invoke(_currentScore);
     }
@@ -34,5 +38,10 @@ public class ScoreManager : MonoBehaviour
     {
         _currentScore = 0;
         OnChangeScore?.Invoke(_currentScore);
+    }
+
+    public void EnableScoring(bool enableScore)
+    {
+        _canScore = enableScore;
     }
 }
