@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameFinishedUI : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameFinishedUI : MonoBehaviour
     [SerializeField] private GameObject nonInteractables;
     [SerializeField] private float openDuration = 0.5f;
     [SerializeField] private float closeDuration = 0.2f;
+    [SerializeField] private TMP_Text copyText;
 
     void Awake()
     {
@@ -58,6 +60,18 @@ public class GameFinishedUI : MonoBehaviour
         
 
         yield return null;
+    }
+
+    public void SetFinishedUIText(int pos)
+    {
+        if(pos == -1)
+        {
+            copyText.text = "Keep it up! You can reach the Leaderboard";
+        }
+        else
+        {
+            copyText.text = "Nice job! You’re #"+pos+" on the leaderboard.";
+        }
     }
 
     public void OnClick_RestartGame()

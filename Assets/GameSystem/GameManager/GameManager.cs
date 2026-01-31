@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        StartGame();
+        // StartGame();
     }
 
     //GameState Controller
@@ -92,7 +92,8 @@ public class GameManager : MonoBehaviour
         AddTimerManager.Instance.StopSpawnAddTimerManager();
         ScoreManager.Instance.EnableScoring(false);
         int score = ScoreManager.Instance.CurrentScore;
-        LeaderboardManager.Instance.CheckForNewHighScore(score,"player");
+        int pos = LeaderboardManager.Instance.CheckForNewHighScore(score,"player");
+        GameFinishedUI.Instance.SetFinishedUIText(pos);
         GameFinishedUI.Instance.OpenGameFinishedUI();
         
     }
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         ChangeState(GameState.menu);
+        MainMenuUI.Instance.OpenMainMenu();
     }
 
     public void OpenHighScore()
